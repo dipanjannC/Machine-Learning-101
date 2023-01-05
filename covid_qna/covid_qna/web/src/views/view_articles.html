@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>CoviD-19 Test UI </title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="googlebot" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    </head>
+    <body>
+        <!-- views/view_articles.html -->
+        <div id="art"></div>
+        <section class="contentwrap">
+            <h1>Question: {{ .Question }}</h1>
+            <br>
+            {{ range $index, $resultData := .ResultData }}
+                <article>
+                    <h2>{{ $resultData.Title }}</h2>
+                    <ul>
+                        <li>Lucene ID: {{ $resultData.LuceneID }}</li>
+                        <li>Confidence value: {{ $resultData.Confidence }}</li>
+                        <li>BERT Answer: {{ $resultData.BERTSQuADAnswerWithHighlights }}</li>
+                        <li>Abstract: {{ $resultData.Abstract }} <a href="/search/{{ $resultData.LuceneID }}">[Click for more details]</a></li>
+                    </ul>
+                </article>
+            {{ end }}
+        </section>
+        <script>
+            var wrapper=$(".contentwrap").html();
+            wrapper=wrapper.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
+            $(".contentwrap").html(wrapper);
+        </script>
+    </body>
+</html>

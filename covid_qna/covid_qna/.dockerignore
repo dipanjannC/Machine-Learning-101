@@ -1,0 +1,12 @@
+# folders
+.git
+.cache
+.go-pkg-cache
+.gopath
+
+# All *.class files in all folders, including build root
+**/*.class
+
+# All markdown files (md) beside all README*.md other than README-secret.md
+*.md
+!README*.md
